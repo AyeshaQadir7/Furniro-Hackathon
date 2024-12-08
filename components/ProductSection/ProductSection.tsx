@@ -1,4 +1,4 @@
-import { Heart, Share, ShoppingCart } from "lucide-react";
+import { Heart, Share } from "lucide-react";
 import Image from "next/image";
 
 const ProductSection = () => {
