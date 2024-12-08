@@ -19,7 +19,7 @@ function RangeSection() {
         {/* Image 1 */}
         <div className="text-center">
           <Image
-            src="/assets/Dinning.png"
+            src="/assets/dinning.png"
             alt="Dining Range"
             width={250}
             height={250}
