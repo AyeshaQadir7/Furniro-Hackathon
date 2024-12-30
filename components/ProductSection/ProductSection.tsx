@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Heart, Share2 } from "lucide-react";
+=======
+import { Heart, Share } from "lucide-react";
+>>>>>>> 8d5376ea00b96bb0bdc8273b096071aa992414c8
 import Image from "next/image";
 import Link from "next/link";
 
