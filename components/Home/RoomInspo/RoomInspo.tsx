@@ -1,6 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 function RoomInspo() {
   const data = {
@@ -15,66 +22,21 @@ function RoomInspo() {
         id: "2",
         name: "02 -- Cute Room",
         description: "Inner Peace",
-        image: "/assets/carousel/cuteroom.png",
+        image: "/assets/carousel/innerpeace.png",
       },
       {
         id: "3",
         name: "03 -- White Bed Frame",
         image: "/assets/carousel/innerpeace.png",
-        description: "An Elevated Marshmellow White Bed Frame",
-      },
-      {
-        id: "4",
-        name: "04 -- Cool Coloured Room",
-        description: "A room with the combination of the best cool colors.",
-        image: "/assets/carousel/innerpeace.png",
-      },
-      {
-        id: "5",
-        name: "05 -- Pink Room",
-        description: "A pink colored Bedroom.",
-        image: "/assets/carousel/innerpeace.png",
-      },
-      {
-        id: "6",
-        name: "06 -- A Luxury Bedroom",
-        description: "An Aesthetic Bedroom Design.",
-        image: "/assets/carousel/innerpeace.png",
+        description: "An Elevated Marshmallow White Bed Frame",
       },
     ],
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2; // Number of items per page
-
-  // Calculate the items to display based on the current page
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = data.RoomInspo.slice(indexOfFirstItem, indexOfLastItem);
-
-  const totalPages = Math.ceil(data.RoomInspo.length / itemsPerPage);
-
-  // Pagination buttons
-  const renderPagination = () => {
-    const pages = [];
-    for (let i = 1; i <= totalPages; i++) {
-      pages.push(
-        <button
-          key={i}
-          onClick={() => setCurrentPage(i)}
-          className={`w-3 h-3 mx-1 rounded-full ${
-            currentPage === i ? "bg-[#B88E2F]" : "bg-Gold"
-          }`}
-        ></button>
-      );
-    }
-    return pages;
-  };
-
   return (
-    <section className="w-full h-auto flex flex-col py-8 px-4 sm:px-8 bg-Creame bg-opacity-75 items-center ">
-      <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center lg:items-start m-auto text-center lg:text-left p-8 ">
-        <div className="w-full lg:w-1/3 lg:pr-8 md:mt-20 items-center ">
+    <section className="w-full h-auto flex flex-col py-8 px-4 sm:px-8 bg-Creame bg-opacity-75 items-center">
+      <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center lg:items-start m-auto text-center lg:text-left p-8">
+        <div className="w-full lg:w-1/3 lg:pr-8 md:mt-20 items-center">
           <h2 className="font-bold text-2xl sm:text-3xl mb-2 text-zinc-700">
             50+ Beautiful Room Inspirations
           </h2>
@@ -88,31 +50,38 @@ function RoomInspo() {
           </button>
         </div>
 
-        <div className="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {currentItems.map((product) => (
-            <div key={product.id} className="relative p-4 rounded-lg group">
-              <Image
-                className="w-full h-auto object-cover rounded-t-lg"
-                src={product.image}
-                alt={product.name}
-                layout="responsive"
-                width={700}
-                height={400}
-              />
-              <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-all duration-300 p-4 text-white text-center">
-                <div>
-                  <h3 className="text-base text-white">{product.name}</h3>
-                  <p className="font-bold text-xl mt-2">
-                    {product.description}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Carousel */}
+        <div className="sm:w-2/4 flex justify-end ">
+          <Carousel>
+            <CarouselContent>
+              {data.RoomInspo.map((room) => (
+                <CarouselItem key={room.id}>
+                  <div className="relative m-8">
+                    <Image
+                      className="w-full h-auto"
+                      src={room.image}
+                      alt={room.name}
+                      layout="responsive"
+                      width={200}
+                      height={400}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 opacity-0 hover:opacity-100 transition-all duration-300 p-4 text-white text-center">
+                      <div>
+                        <h3 className="text-base text-white">{room.name}</h3>
+                        <p className="font-bold text-xl mt-2">
+                          {room.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         </div>
       </div>
-
-      <div className="flex justify-center mt-8">{renderPagination()}</div>
     </section>
   );
 }

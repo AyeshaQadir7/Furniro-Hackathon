@@ -4,11 +4,10 @@ import { MapPin, Phone, Clock } from "lucide-react";
 function ContactPage() {
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="text-center my-16">
+      <div className="text-center mt-6 mb-20">
         <h1 className="text-4xl font-semibold">Get In Touch With Us</h1>
-        <p className="text-gray-600 mt-4">
+        <p className="text-gray-600 mt-4 ">
           We&apos;d love to hear from you! Whether you have a question,
-          <br />
           feedback, or just want to say hello, feel free to reach out.
         </p>
       </div>
@@ -51,7 +50,7 @@ function ContactPage() {
         </div>
 
         {/* Right Section (Form) */}
-        <div>
+        <div className="mx-6">
           <form className="space-y-6 gap-8">
             <div>
               <label
@@ -63,7 +62,7 @@ function ContactPage() {
               <input
                 type="text"
                 id="name"
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-800"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-0 my-2"
                 placeholder="Your Name"
               />
             </div>
@@ -71,14 +70,14 @@ function ContactPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 my-2"
               >
                 Email
               </label>
               <input
                 type="email"
                 id="email"
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-800"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-0"
                 placeholder="Your Email"
               />
             </div>
@@ -86,14 +85,14 @@ function ContactPage() {
             <div>
               <label
                 htmlFor="subject"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 my-2"
               >
                 Subject
               </label>
               <input
                 type="text"
                 id="subject"
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-800"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-0"
                 placeholder="Subject"
               />
             </div>
@@ -101,20 +100,20 @@ function ContactPage() {
             <div>
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 my-2"
               >
                 Message
               </label>
               <textarea
                 id="message"
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-gray-800"
+                className="w-full my-2 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-0"
                 placeholder="Your Message"
               ></textarea>
             </div>
 
             <button
               type="submit"
-              className="px-8 py-3 text-white bg-Gold rounded-sm"
+              className="px-12 py-2 text-white bg-Gold rounded-sm hover:bg-yellow-600"
             >
               Submit
             </button>

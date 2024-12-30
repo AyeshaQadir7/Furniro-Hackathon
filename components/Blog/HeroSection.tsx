@@ -12,7 +12,6 @@ function HeroSection() {
           alt={"main image"}
           layout="fill"
           objectFit="cover"
-          className="opacity-80"
         />
         {/* Text overlay */}
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-black text-center">

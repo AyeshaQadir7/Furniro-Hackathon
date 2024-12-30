@@ -40,11 +40,10 @@ function BlogSection() {
   const recentPosts = blogs.slice(0, 2); // Example recent posts
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto my-8 px-4 py-12">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Section */}
         <section className="lg:col-span-2">
-          <h1 className="text-4xl font-semibold mb-8">Our Blog</h1>
           <div className="grid gap-8">
             {/* Blog Post */}
             {blogs.map((blog) => (
@@ -86,9 +85,9 @@ function BlogSection() {
         </section>
 
         {/* Right Section */}
-        <aside className="space-y-8 ">
+        <aside className="space-y-8">
           {/* Search Bar */}
-          <div className="mt-20">
+          <div className="">
             <input
               type="text"
               placeholder="Search..."

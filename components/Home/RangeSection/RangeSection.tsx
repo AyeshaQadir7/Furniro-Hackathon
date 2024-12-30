@@ -3,20 +3,20 @@ import Image from "next/image";
 
 function RangeSection() {
   return (
-    <section className="py-8">
+    <section className="py-8 my-8">
       {/* Heading and Paragraph */}
-      <div className="text-center mb-6">
-        <h2 className="font-bold text-2xl sm:text-3xl mb-2 text-zinc-700">
+      <div className="text-center mx-6 mb-6">
+        <h2 className="font-bold text-2xl sm:text-3xl mb-2 text-DarkBrown">
           Browse The Range
         </h2>
-        <p className="text-gray-600">
+        <p className=" text-DarkBrown ">
           Lorem ipsum dolor sit amet consectetur adipisicing elit.
         </p>
       </div>
 
       {/* Images with Descriptions */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
-        {/* Image 1 */}
+      <div className="grid grid-cols-3 sm:grid-cols-1 lg:grid-cols-3 gap-3 place-items-center mt-8 mx-6 ">
+        {/* Image 1  */}
         <div className="text-center">
           <Image
             src="/assets/Dinning.png"
@@ -25,7 +25,9 @@ function RangeSection() {
             height={250}
             className="rounded-lg shadow-lg"
           />
-          <p className="mt-2 text-gray-700 font-semibold">Dining Range</p>
+          <p className="mt-3 text-DarkBrown font-semibold tracking-wide text-xl">
+            Dining
+          </p>
         </div>
 
         {/* Image 2 */}
@@ -37,7 +39,9 @@ function RangeSection() {
             height={250}
             className="rounded-lg shadow-lg"
           />
-          <p className="mt-2 text-gray-700 font-semibold">Living Range</p>
+          <p className="mt-3 text-DarkBrown font-semibold tracking-wide text-xl">
+            Living
+          </p>
         </div>
 
         {/* Image 3 */}
@@ -49,7 +53,9 @@ function RangeSection() {
             height={250}
             className="rounded-lg shadow-lg"
           />
-          <p className="mt-2 text-gray-700 font-semibold">Bedroom Range</p>
+          <p className="mt-3 text-DarkBrown font-semibold tracking-wide text-xl">
+            Bedroom
+          </p>
         </div>
       </div>
     </section>

@@ -14,6 +14,7 @@ export default {
         foreground: "var(--fosreground)",
         Creame: "#FFF3E3",
         Gold: "#B88E2F",
+        DarkBrown: "#3A3A3A",
       },
       borderRadius: {
         lg: "var(--radius)",
