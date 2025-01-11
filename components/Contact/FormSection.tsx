@@ -5,6 +5,7 @@ import { MapPin, Phone, Clock } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 
 function ContactPage() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [contactData, setContactData] = useState<any>(null);
 
   useEffect(() => {
@@ -65,6 +66,7 @@ function ContactPage() {
             <Clock size={24} className="text-gray-700" />
             <div>
               <h3 className="font-bold text-lg">Working Hours</h3>
+              {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
               {workingHours.map((item: any, index: number) => (
                 <p key={index} className="text-gray-600">
                   {item.day}: {item.hours}

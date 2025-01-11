@@ -26,7 +26,9 @@ async function fetchRangeData() {
 }
 
 function RangeSection() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [rangeData, setRangeData] = useState<any[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [sectionContent, setSectionContent] = useState<any>(null);
 
   useEffect(() => {

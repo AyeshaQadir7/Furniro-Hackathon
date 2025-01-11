@@ -20,6 +20,7 @@ async function fetchRoomInspo() {
 }
 
 function RoomInspo() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [rooms, setRooms] = useState<any[]>([]);
   const [content, setContent] = useState({
     heading: "",

@@ -12,6 +12,7 @@ async function fetchShareSetup() {
 }
 
 function ShareSetup() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [setupData, setSetupData] = useState<any>(null);
 
   useEffect(() => {

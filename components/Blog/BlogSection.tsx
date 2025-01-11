@@ -21,6 +21,7 @@ async function fetchBlogData() {
 }
 
 function BlogSection() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [blogs, setBlogs] = useState<any[]>([]);
 
   useEffect(() => {
