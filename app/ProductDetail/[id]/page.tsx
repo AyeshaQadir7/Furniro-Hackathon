@@ -30,8 +30,13 @@ export async function generateStaticParams() {
 }
 
 // Render Product Page
-export default function Page({ params }: { params: { id: string } }) {
-  const product = products.find((p) => p.id.toString() === params.id);
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const resolvedParams = await params; // Await the params
+  const product = products.find((p) => p.id.toString() === resolvedParams.id);
 
   if (!product) {
     return <div className="text-center mt-16">Product Not Found</div>;
