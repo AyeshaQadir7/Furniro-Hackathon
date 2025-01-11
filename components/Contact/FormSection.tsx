@@ -1,15 +1,41 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { MapPin, Phone, Clock } from "lucide-react";
+import { client } from "@/sanity/lib/client";
 
 function ContactPage() {
+  const [contactData, setContactData] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const query = `*[_type == "contact"][0] {
+        title,
+        description,
+        address,
+        phone,
+        hotline,
+        workingHours
+      }`;
+      const data = await client.fetch(query);
+      setContactData(data);
+    };
+
+    fetchData();
+  }, []);
+
+  if (!contactData) {
+    return <div className="flex justify-center my-4">Loading...</div>;
+  }
+
+  const { title, description, address, phone, hotline, workingHours } =
+    contactData;
+
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="text-center mt-6 mb-20">
-        <h1 className="text-4xl font-semibold">Get In Touch With Us</h1>
-        <p className="text-gray-600 mt-4 ">
-          We&apos;d love to hear from you! Whether you have a question,
-          feedback, or just want to say hello, feel free to reach out.
-        </p>
+        <h1 className="text-4xl font-semibold">{title}</h1>
+        <p className="text-gray-600 mt-4">{description}</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -19,9 +45,7 @@ function ContactPage() {
             <MapPin size={24} className="text-gray-700" />
             <div>
               <h3 className="font-bold text-lg">Address</h3>
-              <p className="text-gray-600">
-                236 5th SE Avenue, New York NY10000, United States
-              </p>
+              <p className="text-gray-600">{address}</p>
             </div>
           </div>
 
@@ -30,8 +54,9 @@ function ContactPage() {
             <div>
               <h3 className="font-bold text-lg">Phone</h3>
               <p className="text-gray-600">
-                +1 Mobile: +(84) 546-6789
-                <br /> Hotline: +(84) 456-6789
+                {phone}
+                <br />
+                {hotline && `Hotline: ${hotline}`}
               </p>
             </div>
           </div>
@@ -40,11 +65,11 @@ function ContactPage() {
             <Clock size={24} className="text-gray-700" />
             <div>
               <h3 className="font-bold text-lg">Working Hours</h3>
-              <p className="text-gray-600">
-                Monday-Friday: 9:00 - 22:00
-                <br />
-                Saturday-Sunday: 9:00 - 21:00
-              </p>
+              {workingHours.map((item: any, index: number) => (
+                <p key={index} className="text-gray-600">
+                  {item.day}: {item.hours}
+                </p>
+              ))}
             </div>
           </div>
         </div>

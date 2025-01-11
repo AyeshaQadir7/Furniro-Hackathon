@@ -1,43 +1,37 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Calendar, Tag, User } from "lucide-react";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
+import Link from "next/link";
+
+// Fetch blog data from Sanity
+async function fetchBlogData() {
+  const query = `*[_type == "blog"] | order(publishedDate desc) {
+    _id,
+    title,
+    description,
+    publishedDate,
+    category,
+    admin,
+    mainImage
+  }`;
+  return client.fetch(query);
+}
 
 function BlogSection() {
-  // Example data for blogs
-  const blogs = [
-    {
-      id: 1,
-      image: "/assets/blog/blog1.png",
-      title: "How to Style Your Outfits",
-      description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero soluta et minus aspernatur commodi eos, fugiat incidunt!",
-      date: "Dec 8, 2024",
-      category: "Fashion",
-      admin: "Admin",
-    },
-    {
-      id: 2,
-      image: "/assets/blog/blog2.png",
-      title: "Top Fashion Trends of 2024",
-      description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero soluta et minus aspernatur commodi eos, fugiat incidunt!",
-      date: "Nov 20, 2024",
-      category: "Trends",
-      admin: "Admin",
-    },
-    {
-      id: 3,
-      image: "/assets/blog/blog3.png",
-      title: "10 Tips for a Better Lifestyle",
-      description:
-        "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero soluta et minus aspernatur commodi eos, fugiat incidunt!",
-      date: "Oct 15, 2024",
-      category: "Lifestyle",
-      admin: "Admin",
-    },
-  ];
+  const [blogs, setBlogs] = useState<any[]>([]);
 
-  const recentPosts = blogs.slice(0, 2); // Example recent posts
+  useEffect(() => {
+    async function getData() {
+      const blogData = await fetchBlogData();
+      setBlogs(blogData);
+    }
+    getData();
+  }, []);
+
+  const recentPosts = blogs.slice(0, 2);
 
   return (
     <div className="container mx-auto my-8 px-4 py-12">
@@ -48,11 +42,11 @@ function BlogSection() {
             {/* Blog Post */}
             {blogs.map((blog) => (
               <div
-                key={blog.id}
+                key={blog._id}
                 className="bg-white rounded-lg overflow-hidden"
               >
                 <Image
-                  src={blog.image}
+                  src={urlFor(blog.mainImage).url()}
                   width={800}
                   height={400}
                   alt={blog.title}
@@ -64,20 +58,24 @@ function BlogSection() {
                   <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
                     <div className="flex items-center gap-1">
                       <User size={16} />
-                      <span>{blog.admin}</span>
+                      <span>{blog.admin || "Admin"}</span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Calendar size={16} />
-                      <span>{blog.date}</span>
+                      <span>
+                        {new Date(blog.publishedDate).toLocaleDateString()}
+                      </span>
                     </div>
                     <div className="flex items-center gap-1">
                       <Tag size={16} />
                       <span>{blog.category}</span>
                     </div>
                   </div>
-                  <button className=" py-2 text-black underline hover:text-gray-900">
-                    Read More
-                  </button>
+                  <Link href={"/blog"}>
+                    <button className=" py-2 text-black underline hover:text-gray-900">
+                      Read More
+                    </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -99,14 +97,16 @@ function BlogSection() {
           <div>
             <h3 className="text-xl font-semibold mb-4">Categories</h3>
             <ul className="space-y-2">
-              {["Fashion", "Lifestyle", "Tips", "Sales"].map((category) => (
-                <li
-                  key={category}
-                  className="text-gray-600 hover:text-gray-800"
-                >
-                  {category}
-                </li>
-              ))}
+              {Array.from(new Set(blogs.map((blog) => blog.category))).map(
+                (category) => (
+                  <li
+                    key={category}
+                    className="text-gray-600 hover:text-gray-800"
+                  >
+                    {category}
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
@@ -115,9 +115,9 @@ function BlogSection() {
             <h3 className="text-xl font-semibold mb-4">Recent Posts</h3>
             <ul className="space-y-6">
               {recentPosts.map((post) => (
-                <li key={post.id} className="flex gap-4">
+                <li key={post._id} className="flex gap-4">
                   <Image
-                    src={post.image}
+                    src={urlFor(post.mainImage).url()}
                     width={100}
                     height={100}
                     alt={post.title}
