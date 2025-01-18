@@ -6,6 +6,8 @@ import shareSetup from "./HomePage/shareSetup";
 import blogPage from "./BlogPage/blogPage";
 import contactPage from "./ContactPage/contactPage";
 import footer from "./Footer/footer";
+import { product } from "./HomePage/product";
+import {shopProduct} from "./Shop/shopProduct";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -16,5 +18,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     blogPage,
     contactPage,
     footer,
+    product,
+    shopProduct,
   ],
 };

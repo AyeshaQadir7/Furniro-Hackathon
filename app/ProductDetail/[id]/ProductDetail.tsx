@@ -9,6 +9,7 @@ interface Product {
   name: string;
   price: string;
   des: string;
+  des2: string;
   images: string[];
   sku: string;
   category: string;
@@ -49,7 +50,7 @@ export default function ProductDetail({ product }: { product: Product }) {
       </div>
 
       {/* Product Detail */}
-      <div className="container my-14 mx-auto p-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-DarkBrown">
+      <div className="container my-8 mx-auto p-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-DarkBrown">
         {/* Product Images Section */}
         <div className="flex gap-6">
           {/* Thumbnail Images (Left Side) */}
@@ -159,6 +160,14 @@ export default function ProductDetail({ product }: { product: Product }) {
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="border-b-2 my-14"></div>
+
+      {/* Description */}
+      <div className="flex flex-col items-center justify-center ">
+        <h3 className="font-semibold text-xl my-6">Description</h3>
+        <p className="text-sm text-gray-600 mb-6 w-2/3">{product.des2}</p>
       </div>
     </>
   );

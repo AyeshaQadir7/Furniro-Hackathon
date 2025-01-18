@@ -22,7 +22,7 @@ const ProductSection = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const query = `*[_type == "product"] | order(_createdAt desc)[0...8] { 
+        const query = `*[_type == "product"] | order(_createdAt desc)[0...16] { 
           _id, 
           title, 
           price, 
@@ -80,7 +80,7 @@ const ProductSection = () => {
                     alt="hello"
                     width={300}
                     height={400}
-                    className="object-cover w-full h-64 md:h-80 transition-transform duration-300 ease-in-out"
+                    className="object-cover w-full h-80 transition-transform duration-300 ease-in-out"
                   />
                   {/* Hover overlay */}
                   <div className="absolute inset-0 bg-DarkBrown opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
