@@ -1,5 +1,5 @@
 import HeroSection from "@/components/Cart/HeroSection";
-import Cart from "@/components/Cart/Cart";
+import Cart from "@/components/Cart/CartPage";
 import React from "react";
 import IconsSection from "@/components/Shop/IconsSection";
 

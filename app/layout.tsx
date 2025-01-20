@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import CartWrapper from "@/components/Cart/CartProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,10 +33,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-Poppins`}
       >
         <div className="max-w-[1400px] mx-auto overflow-x-hidden">
+        <CartWrapper>
           <ScrollToTop />
           <Navbar />
           {children}
           <Footer />
+          </CartWrapper>
         </div>
       </body>
     </html>
