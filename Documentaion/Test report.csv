@@ -1,0 +1,7 @@
+Test Case ID,Test Case Description,Test Steps,Expected Result,Actual Result,Status,Severity Level,Assigned To,Remarks
+TC-001,Product listing loads successfully,Open homepage and check product listings,Products should appear correctly,Products appeared as expected,Pass,Low,-,-
+TC-002,Search filters return correct results,Apply category filter and observe results,Only filtered products should display,Filter did not work properly,Fail,High,-,problem in understanding the logic
+TC-003,Add product to cart functionality,Select a product and add it to the cart,Product should be added to the cart,Product added successfully,Pass,Low,-,-
+TC-004,Checkout process redirects correctly,Proceed to checkout and check redirection,User should be redirected to checkout,User was stuck on the cart page,Fail,High,-,Checkout button not working
+TC-005,Error handling for network failure,Turn off internet and reload the page,A user-friendly error message appears,Error message displayed correctly,Pass,Medium,-,-
+TC-006,Responsive design on mobile devices,Test website on different screen sizes,Website layout adjusts properly,Design adapted well to mobile,Pass,Low,-,-
